@@ -14,6 +14,9 @@ server.mount_proc("/all") { |req, res|
   res.content_type = "text/html"
   res.body = erb.result(binding)
 }
+server.mount_proc("/now") { |req, res|
+  res.body = Time.now.to_s
+}
 
 Signal.trap(:INT) { server.shutdown }
 server.start
